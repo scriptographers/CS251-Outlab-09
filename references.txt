@@ -1,0 +1,13 @@
+https://www.tutorialspoint.com/android/android_json_parser.htm
+https://newsapi.org/docs
+https://developer.android.com/
+https://stackoverflow.com/questions/34309174/json-parsing-no-value-error-in-android
+https://stackoverflow.com/questions/23593486/java-httpurlconnection-getinputstream-but-get-401-ioexception
+https://stackoverflow.com/questions/41263210/send-post-request-and-read-response-ioexception-when-conn-getinputstream
+https://stackoverflow.com/questions/2220547/why-doesnt-system-out-println-work-in-android
+https://stackoverflow.com/questions/31762417/java-uses-or-overrides-a-deprecated-api-error
+https://stackoverflow.com/questions/34691175/how-to-send-httprequest-and-get-json-response-in-android
+https://stackoverflow.com/questions/309424/how-do-i-read-convert-an-inputstream-into-a-string-in-java
+https://developer.android.com/reference/java/io/IOException
+https://stackoverflow.com/questions/45940861/android-8-cleartext-http-traffic-not-permitted
+https://stackoverflow.com/questions/63528897/how-to-solve-phenotype-api-error-in-android-studio

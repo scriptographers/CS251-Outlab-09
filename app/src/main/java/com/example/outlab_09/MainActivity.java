@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
         protected Void doInBackground(Void... arg0) {
             HttpHandler sh = new HttpHandler();
             // Making a request to url and getting response
-            String apiUrl = "https://newsapi.org/v2/top-headlines?sources=bbc-news&apiKey=aaba12eb04744b7291a942542bbd9bf0";
+            String apiUrl = "https://newsapi.org/v2/top-headlines?country=in&apiKey=aaba12eb04744b7291a942542bbd9bf0";
             String jsonStr = sh.makeServiceCall(apiUrl);
             Log.e("News App:", "JSON Response received: " + jsonStr);
 
@@ -61,9 +61,9 @@ public class MainActivity extends AppCompatActivity {
                     // looping through all articles
                     for (int i = 0; i < nArticles; i++) {
                         JSONObject c = articles.getJSONObject(i);
-                        String title = c.getString("id");
+                        String title = c.getString("title");
                         String author = c.getString("author");
-                        String date = c.getString("date");
+                        String date = c.getString("publishedAt");
                         String url = c.getString("url");
                         // Temp HashMap
                         HashMap<String, String> tmpNews = new HashMap<>();
