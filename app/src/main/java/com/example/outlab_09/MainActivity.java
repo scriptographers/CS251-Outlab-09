@@ -1,5 +1,6 @@
 package com.example.outlab_09;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -22,9 +23,11 @@ public class MainActivity extends AppCompatActivity {
     // Members
     private RecyclerView rv;
     // Contains the news data
-    ArrayList<HashMap<String, String>> newsList;
+    ArrayList<HashMap<String, String>> newsList; // The Fetched List
+    ArrayList<HashMap<String, String>> newsList_dis; // The Displayed List
     // Number of articles to display
     int nArticles = 10;
+    boolean loading = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,15 +106,34 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(Void result) {
             super.onPostExecute(result);
-//            ListAdapter adapter = new SimpleAdapter(
-//                    MainActivity.this,
-//                    newsList,
-//                    R.layout.list_item, new String[]{"title", "author", "date"},
-//                    new int[]{R.id.title, R.id.author, R.id.date}
-//            );
-            RecyclerViewAdaptor adapter = new RecyclerViewAdaptor(MainActivity.this, newsList);
+
+            newsList_dis = new ArrayList<>(newsList);
+            RecyclerViewAdaptor adapter = new RecyclerViewAdaptor(MainActivity.this, newsList_dis);
             rv.setAdapter(adapter);
-            rv.setLayoutManager(new LinearLayoutManager(MainActivity.this));
+            LinearLayoutManager manager = new LinearLayoutManager(MainActivity.this);
+            rv.setLayoutManager(manager);
+            rv.addOnScrollListener(new RecyclerView.OnScrollListener() {
+                @Override
+                public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                    if (dy > 0) { //check for scroll down
+                        int total = manager.getItemCount();
+                        int visible_count = manager.getChildCount();
+                        int past_visible = manager.findFirstVisibleItemPosition();
+
+                        if (loading) {
+                            if ((visible_count + past_visible) >= total) {
+                                loading = false;
+
+                                newsList_dis.addAll(newsList);
+                                adapter.notifyItemInserted(newsList.size());
+                                adapter.notifyDataSetChanged();
+
+                                loading = true;
+                            }
+                        }
+                    }
+                }
+            });
         }
     }
 }

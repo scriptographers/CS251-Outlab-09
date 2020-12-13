@@ -17,11 +17,9 @@ public class RecyclerViewAdaptor extends RecyclerView.Adapter<RecyclerViewAdapto
 
     private static final String TAG = "RecyclerViewAdaptor";
 
-    private Context context;
     private ArrayList<HashMap<String, String>> data = new ArrayList<>();
 
     public RecyclerViewAdaptor(Context context, ArrayList<HashMap<String, String>> data) {
-        this.context = context;
         this.data = data;
     }
 
@@ -44,7 +42,7 @@ public class RecyclerViewAdaptor extends RecyclerView.Adapter<RecyclerViewAdapto
     @Override
     public int getItemCount() {
         Log.d(TAG, "getItemCount: " + data.size());
-        return data.size();
+        return data == null ? 0 : data.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
