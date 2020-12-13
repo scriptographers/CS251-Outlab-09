@@ -1,11 +1,13 @@
 package com.example.outlab_09;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.widget.ListAdapter;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
 import org.json.JSONArray;
@@ -18,7 +20,7 @@ import java.util.HashMap;
 public class MainActivity extends AppCompatActivity {
 
     // Members
-    private ListView lv;
+    private RecyclerView rv;
     // Contains the news data
     ArrayList<HashMap<String, String>> newsList;
     // Number of articles to display
@@ -30,7 +32,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         newsList = new ArrayList<>();
-        lv = (ListView)findViewById(R.id.list);
+        rv = (RecyclerView) findViewById(R.id.card_list);
+        rv.setHasFixedSize(true);
 
         new GetData().execute();
     }
@@ -49,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
             // Making a request to url and getting response
             String apiUrl = "https://newsapi.org/v2/top-headlines?country=in&apiKey=aaba12eb04744b7291a942542bbd9bf0";
             String jsonStr = sh.makeServiceCall(apiUrl);
-            Log.e("News App:", "JSON Response received: " + jsonStr);
+            Log.d("News App:", "JSON Response received: " + jsonStr);
 
             if (jsonStr != null){
                 try{
@@ -100,13 +103,15 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(Void result) {
             super.onPostExecute(result);
-            ListAdapter adapter = new SimpleAdapter(
-                    MainActivity.this,
-                    newsList,
-                    R.layout.list_item, new String[]{"title", "author", "date"},
-                    new int[]{R.id.title, R.id.author, R.id.date}
-            );
-            lv.setAdapter(adapter);
+//            ListAdapter adapter = new SimpleAdapter(
+//                    MainActivity.this,
+//                    newsList,
+//                    R.layout.list_item, new String[]{"title", "author", "date"},
+//                    new int[]{R.id.title, R.id.author, R.id.date}
+//            );
+            RecyclerViewAdaptor adapter = new RecyclerViewAdaptor(MainActivity.this, newsList);
+            rv.setAdapter(adapter);
+            rv.setLayoutManager(new LinearLayoutManager(MainActivity.this));
         }
     }
 }

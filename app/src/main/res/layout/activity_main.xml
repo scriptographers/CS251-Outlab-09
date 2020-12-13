@@ -7,13 +7,18 @@
     tools:context=".MainActivity">
 
 
-    <ListView
-        android:id="@+id/list"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-    >
+<!--    <ListView-->
+<!--        android:id="@+id/list"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--    >-->
 
-    </ListView>
+<!--    </ListView>-->
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/card_list" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
