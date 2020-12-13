@@ -11,3 +11,7 @@ https://stackoverflow.com/questions/309424/how-do-i-read-convert-an-inputstream-
 https://developer.android.com/reference/java/io/IOException
 https://stackoverflow.com/questions/45940861/android-8-cleartext-http-traffic-not-permitted
 https://stackoverflow.com/questions/63528897/how-to-solve-phenotype-api-error-in-android-studio
+https://stackoverflow.com/questions/62510732/getting-nosuchmethodexception-error-for-class-android-graphics-fontfamily-wh
+https://stackoverflow.com/questions/26543131/how-to-implement-endless-list-with-recyclerview
+https://www.journaldev.com/24041/android-recyclerview-load-more-endless-scrolling
+https://www.geeksforgeeks.org/join-two-arraylists-in-java/
